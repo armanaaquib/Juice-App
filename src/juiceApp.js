@@ -21,18 +21,10 @@ class JuiceApp {
     });
   }
 
-  query(wheres) {
-    const entities = Object.keys(wheres);
-    let whereCause = `${entities[0]}="${wheres[entities[0]]}"`;
-    whereCause = entities
-      .slice(1)
-      .reduce(
-        (whereCause, entity) => (whereCause += `${entity}="${wheres[entity]}"`),
-        whereCause
-      );
-
+  query(entity, value, strict = false) {
+    const wildCard = strict ? '' : '%';
     const query = `SELECT empId, beverage, qty, date
-      FROM juices WHERE ${whereCause}`;
+      FROM juices WHERE ${entity} LIKE "${value}${wildCard}"`;
 
     return new Promise((res, rej) => {
       this.db.all(query, [], (err, rows) => {
