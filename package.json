@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sqlite3": "5.0.0"
+    "sqlite3": "5.0.0",
+    "vorpal": "1.12.0"
   }
 }
