@@ -14,7 +14,7 @@ class JuiceApp {
     return new Promise((res, rej) => {
       this.db.run(insertTranSql, [empId, beverage, qty], (err) => {
         if (err) throw err;
-        this.query({ empId }).then((rows) => {
+        this.query('empId', empId, true).then((rows) => {
           res(rows);
         });
       });
